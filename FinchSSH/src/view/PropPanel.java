@@ -5,17 +5,17 @@
  */
 package view;
 
-import finchssh.GUITester;
+import finchssh.ProgControl;
 
 
 public class PropPanel extends javax.swing.JPanel {
-GUITester app;
+ProgControl app;
     
     String input_IP = null;
     String input_User = null;
     String input_Password = null;
     
-    public PropPanel(GUITester app) {
+    public PropPanel(ProgControl app) {
         this.app = app;
         initComponents();
     }

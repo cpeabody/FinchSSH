@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class FinchSSHTool implements ConnectionMonitor {
 
-    GUITester app;
+    ProgControl app;
     String hostname;
     String username;
     String password;
@@ -28,7 +28,7 @@ public class FinchSSHTool implements ConnectionMonitor {
     String compileCmd;
     String runCmd;
 
-    public FinchSSHTool(String hostname, String username, String password, String fileToTransferPath, String fileName, GUITester app) {
+    public FinchSSHTool(String hostname, String username, String password, String fileToTransferPath, String fileName, ProgControl app) {
         this.app = app;
         this.hostname = hostname;
         this.username = username;
@@ -39,71 +39,50 @@ public class FinchSSHTool implements ConnectionMonitor {
         compileCmd = "sudo javac -classpath :Finch/finch.jar " + fileName;
         runCmd = "sudo java -classpath Finch/finch.jar: " + classFileName;
         //app.disableWindow();
-        
-        app.initFeedbackPanel();
 
-        app.displayFeedback("\n=================================");
-        app.displayFeedback("HostName: " + this.hostname);
-        app.displayFeedback("UserName: " + this.username);
-        app.displayFeedback("Password: " + this.password);
-       app.displayFeedback("FiletoTransferPath: " + this.fileToTransferPath);
-        app.displayFeedback("fileName: " + this.fileName);
-        app.displayFeedback("destinationPath: " + destinationPath);
-        app.displayFeedback("compileCmd: " + compileCmd);
-        app.displayFeedback("runCmd: " + runCmd);
-        app.displayFeedback("=================================\n");
-        
-//        System.out.println("\n=================================");
-//        System.out.println("HostName: " + this.hostname);
-//        System.out.println("UserName: " + this.username);
-//        System.out.println("Password: " + this.password);
-//        System.out.println("FiletoTransferPath: " + this.fileToTransferPath);
-//        System.out.println("fileName: " + this.fileName);
-//        System.out.println("destinationPath: " + destinationPath);
-//        System.out.println("compileCmd: " + compileCmd);
-//        System.out.println("runCmd: " + runCmd);
-//        System.out.println("=================================\n");
+        if (app.initFeedbackPanel()) {
 
-        //run program
-        runFinchConnect();
-
-       // app.enableWindow();
+//        app.displayFeedback("\n=================================");
+//        app.displayFeedback("HostName: " + this.hostname);
+//        app.displayFeedback("UserName: " + this.username);
+//        app.displayFeedback("Password: " + this.password);
+//        app.displayFeedback("FiletoTransferPath: " + this.fileToTransferPath);
+//        app.displayFeedback("fileName: " + this.fileName);
+//        app.displayFeedback("destinationPath: " + destinationPath);
+//        app.displayFeedback("compileCmd: " + compileCmd);
+//        app.displayFeedback("runCmd: " + runCmd);
+//        app.displayFeedback("=================================\n");
+            //run program
+            runFinchConnect();
+        }
+        // app.enableWindow();
     }
-    
-    
-    
-    
-    
-    
+
     private void runFinchConnect() {
         conn = makeConnection(hostname, username, password);  // make a connection
         if (conn.isAuthenticationComplete()) {
             FileTransfer ft = new FileTransfer(conn, fileToTransferPath, destinationPath);
-            System.out.println("attempting transfer ..."); //test
-            app.displayFeedback("Transfering file.....");
+            app.displayFeedback("Transfering file...");
             ft.doTransfer(conn);//transfer File
-            System.out.println("Transfer Complete!"); //test
-            app.displayFeedback("..Complete");
+            app.displayFeedback("...Complete\n");
             app.displayFeedback("Compiling");
-            
+
             sendCommand(conn, compileCmd); //send a linux command  
-            app.displayFeedback("..Complete");
+            app.displayFeedback("...Complete\n");
             app.displayFeedback("Running program...");
             sendCommand(conn, runCmd); //send a linux command  
-            app.displayFeedback("..Complete");
-        } else {     
-            System.out.println("Connection not made!");
+            app.displayFeedback("...Complete\n");
+        } else {
             app.displayFeedback("Connection not made!");
         }
 
         app.CompleteRun();
         conn.close();
-       // closeProgram();
+        // closeProgram();
 
     }
-    
-    
-        private Connection makeConnection(String host, String user, String passwrd) {
+
+    private Connection makeConnection(String host, String user, String passwrd) {
         Connection c = null;
         boolean isAuthenticated = false;
 
@@ -113,11 +92,9 @@ public class FinchSSHTool implements ConnectionMonitor {
             isAuthenticated = c.authenticateWithPassword(user, passwrd);
         } catch (IOException ex) {
             app.displayFeedback("Connection Failed!\nError: " + ex.getMessage());
-            System.out.println("Connection Failed!\nError: " + ex.getMessage()); //test
         }
 
         if (isAuthenticated) {
-            System.out.println("**** Connected to: " + host + " ****\n");
             app.displayFeedback("**** Connected to: " + host + " ****\n"); //test
         }
         return c;
@@ -159,8 +136,9 @@ public class FinchSSHTool implements ConnectionMonitor {
                 read = false;
             }
             System.out.println(line);
+
             app.displayFeedback(line);
-            
+
         }
     }
 
@@ -169,10 +147,4 @@ public class FinchSSHTool implements ConnectionMonitor {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    private void closeProgram() {
-
-        System.out.println("Closing connection!");
-        conn.close();
-        System.exit(0);
-    }
 }

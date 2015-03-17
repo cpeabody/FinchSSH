@@ -5,12 +5,8 @@
  */
 package view;
 
-import finchssh.FinchSSHTool;
-import finchssh.GUITester;
+import finchssh.ProgControl;
 import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -19,12 +15,13 @@ import javax.swing.JOptionPane;
  * @author Peabody
  */
 public class RunPanel extends javax.swing.JPanel {
+
     File selectedFile;
     String filePath = "Select a File";
-    GUITester app;
+    ProgControl app;
     boolean fileReady = false;
-            
-    public RunPanel(GUITester app) {
+
+    public RunPanel(ProgControl app) {
         this.app = app;
         initComponents();
         text_FileID.setText(filePath);
@@ -47,7 +44,7 @@ public class RunPanel extends javax.swing.JPanel {
         btn_Exit = new javax.swing.JButton();
         btn_Back = new javax.swing.JButton();
 
-        FileSelector.setCurrentDirectory(new java.io.File("C:\\Users\\Peabody\\Documents\\NetBeansProjects\\FinchSSH"));
+        FileSelector.setCurrentDirectory(new java.io.File("C:\\Users\\CJ\\Documents\\NetBeansProjects\\GitRepos\\FinchSSH\\FinchSSH"));
         FileSelector.setDialogTitle("");
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -85,6 +82,11 @@ public class RunPanel extends javax.swing.JPanel {
 
         btn_Back.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_Back.setText("Back");
+        btn_Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_BackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -139,8 +141,7 @@ public class RunPanel extends javax.swing.JPanel {
             selectedFile = FileSelector.getSelectedFile();
             filePath = selectedFile.getPath();
             text_FileID.setText(selectedFile.getName());
-            System.out.println("File Select: " + filePath);
-            fileReady = true;           
+            fileReady = true;
         } else {
             selectedFile = null;
             filePath = "Select a file";
@@ -154,11 +155,15 @@ public class RunPanel extends javax.swing.JPanel {
     private void btn_RunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RunActionPerformed
         if (fileReady) {
             app.doFinchRun(filePath, selectedFile.getName());
-        }else{
-        JOptionPane.showMessageDialog(this, "Select a File to continue");
+        } else {
+            JOptionPane.showMessageDialog(this, "Select a File to continue");
         }
-        
+
     }//GEN-LAST:event_btn_RunActionPerformed
+
+    private void btn_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BackActionPerformed
+        app.goToPropPanel();
+    }//GEN-LAST:event_btn_BackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

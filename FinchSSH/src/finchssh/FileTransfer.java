@@ -3,11 +3,8 @@ package finchssh;
 import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.SCPClient;
 import ch.ethz.ssh2.Session;
-import ch.ethz.ssh2.StreamGobbler;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,33 +20,29 @@ public class FileTransfer {
     }
 
     public boolean doTransfer(Connection conn) {
-     
-            Session sess = null;
 
+        Session sess = null;
+
+        try {
+            sess = conn.openSession();// Create a session
+            SCPClient scp = new SCPClient(conn); //transfer client
+            System.out.println("Client Made");
+            scp.put(toTransfer, targetPath, "0777");
             try {
-                sess = conn.openSession();// Create a session
-                SCPClient scp = new SCPClient(conn); //transfer client
-                System.out.println("Client Made");
-                scp.put(toTransfer, targetPath,"0777");
-                try {
-            Thread.sleep(500);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(FinchSSH.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                
-                
-                System.out.println("Put complete");
-                
-                
-
-            sess.close();
-            System.out.println("Transfer Complete!\n");              
-            } catch (IOException ex) {
-                System.out.println("Transfer Failed");
-
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(FinchSSH.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-         
+            System.out.println("Put complete");
+
+            sess.close();
+            System.out.println("Transfer Complete!\n");
+        } catch (IOException ex) {
+            System.out.println("Transfer Failed");
+
+        }
+
         return true;
     }
 

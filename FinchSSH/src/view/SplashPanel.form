@@ -21,20 +21,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-              <Component id="label_Image" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="81" max="32767" attributes="0"/>
-          </Group>
+          <Component id="label_Image" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-              <Component id="label_Image" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="170" max="32767" attributes="0"/>
-          </Group>
+          <Component id="label_Image" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -44,7 +36,9 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Rockwell Extra Bold" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Finch Remote Connect"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="C:\Users\CJ\Pictures\splash_450x250.fw.png"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

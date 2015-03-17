@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 
 import javax.swing.text.DefaultCaret;
@@ -13,25 +9,26 @@ import javax.swing.text.DefaultCaret;
  */
 public class FeedPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form feedPanel
-     */
+    DefaultCaret caret;
+
     public FeedPanel() {
         initComponents();
-          DefaultCaret caret = (DefaultCaret) textArea_Output.getCaret();
-  caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        scrollPane.setAutoscrolls(true);
+        caret = (DefaultCaret) textArea_Output.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
     }
 
-    public void clearText(){
+    public void clearText() {
         textArea_Output.setText("");
     }
-    
-    public void addText(String str){  
-      textArea_Output.append("\n");
-      textArea_Output.append(str);
+
+    public void addText(String str) {
+        textArea_Output.append("\n");
+        textArea_Output.append(str);
+        this.update(this.getGraphics());
+
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,10 +44,22 @@ public class FeedPanel extends javax.swing.JPanel {
         btn_Exit = new javax.swing.JButton();
         btn_Clear = new javax.swing.JButton();
 
-        textArea_Output.setEditable(false);
+        setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
+
+        scrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        scrollPane.setAutoscrolls(true);
+        scrollPane.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
+        scrollPane.setDoubleBuffered(true);
+
         textArea_Output.setColumns(20);
+        textArea_Output.setFont(new java.awt.Font("Consolas", 0, 13)); // NOI18N
+        textArea_Output.setLineWrap(true);
         textArea_Output.setRows(5);
+        textArea_Output.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        textArea_Output.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textArea_Output.setDebugGraphicsOptions(javax.swing.DebugGraphics.FLASH_OPTION);
         textArea_Output.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        textArea_Output.setDoubleBuffered(true);
         scrollPane.setViewportView(textArea_Output);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -58,6 +67,7 @@ public class FeedPanel extends javax.swing.JPanel {
 
         btn_Exit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_Exit.setText("Exit");
+        btn_Exit.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
         btn_Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ExitActionPerformed(evt);
@@ -66,6 +76,7 @@ public class FeedPanel extends javax.swing.JPanel {
 
         btn_Clear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_Clear.setText("Clear");
+        btn_Clear.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
         btn_Clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ClearActionPerformed(evt);
@@ -95,8 +106,8 @@ public class FeedPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Clear)
                     .addComponent(btn_Exit))

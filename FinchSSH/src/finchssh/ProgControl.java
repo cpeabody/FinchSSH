@@ -7,21 +7,19 @@ import view.RunPanel;
 import view.PropPanel;
 import view.SplashPanel;
 
-public class GUITester {
+public class ProgControl {
 
     private String input_IP = null;
     private String input_User = null;
     private String input_Password = null;
     private final MainWindow window;
     private final Scanner scan = new Scanner(System.in); //used in bebug
-    RunPanel rPan;
-    FeedPanel fPan;
+    private RunPanel rPan;
+    private FeedPanel fPan;
+    private PropPanel pPan;
 
-    public GUITester() {
+    public ProgControl() {
         window = new MainWindow(600, 400);
-
-        //debug alt exit from terminal
-        doAction(getOption(), window);
         startProgram();
     }
 
@@ -35,18 +33,15 @@ public class GUITester {
         window.addContent(sPan);
 
         try {
-            Thread.sleep(4000);
+            Thread.sleep(2500);
         } catch (InterruptedException ex) {
             System.out.println("Sleep Error");
             System.exit(-1);
         }
 
         //create  and add properties panel
-        PropPanel pPan = new PropPanel(this);
+        pPan = new PropPanel(this);
         window.addContent(pPan);
-
-        //debug alt exit from terminal
-        doAction(getOption(), window);
 
     }
 
@@ -81,13 +76,17 @@ public class GUITester {
 
     }
 
-    public void displayFeedback(String str) {
+    public boolean displayFeedback(String str) {
+
         fPan.addText(str);
+
+        return true;
     }
 
-    public void initFeedbackPanel() {
+    public boolean initFeedbackPanel() {
         fPan = new FeedPanel();
         window.addContent(fPan);
+        return true;
     }
 
     public void CompleteRun() {
@@ -95,56 +94,24 @@ public class GUITester {
         window.addContent(rPan);
     }
 
-    /**
-     * Hides main Window
-     */
-    public void disableWindow() {
-        window.setVisible(false);
+    public RunPanel getrPan() {
+        return rPan;
     }
 
-    /**
-     * Sets main window to visible
-     */
-    public void enableWindow() {
-        window.setVisible(true);
+    public FeedPanel getfPan() {
+        return fPan;
+    }
+
+    public PropPanel getpPan() {
+        return pPan;
     }
 
     public static void main(String[] args) {
-        GUITester app = new GUITester();
+        ProgControl app = new ProgControl();
     }
 
-    /**
-     * Debug Method
-     *
-     * @return return option for alternative exit from program
-     */
-    private int getOption() {
-        String optionList = "\nSelect an Option:\n1) Close\n2)Exit\n--->  ";
-        System.out.print(optionList);
-        int opt = scan.nextInt();
-        return opt;
+    public void goToPropPanel() {
+        window.addContent(pPan);
     }
 
-    /**
-     * Debug Method:
-     *
-     * @param action alternative exit from program
-     * @param win window
-     */
-    private void doAction(int action, MainWindow win) {
-
-        switch (action) {
-            case 1:
-                System.out.println("Close Slected!\n Closing..\n");
-                win.closeWindow();
-                break;
-            case 2:
-                System.out.println("Exit Selected!\n Exiting program..\n");
-                System.exit(0);
-            default:
-                System.out.println("Invalid Option!\n Exiting program..\n");
-                System.exit(-1);
-        }
-
-    }
 }

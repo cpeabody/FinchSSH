@@ -1,4 +1,3 @@
-
 package view;
 
 import java.awt.Container;
@@ -15,7 +14,7 @@ public class MainWindow extends JFrame {
     private int window_WIDTH;
     private Dimension window_Dimension;
     private JLabel testLabel = new JLabel("NOTHING HAS BEEN ADDED TO THE CONTENT PANE");
-    
+
     public MainWindow(int width, int height) throws HeadlessException {
         window_Dimension = new Dimension(width, height);
         this.setTitle("Wireless Finch");
@@ -23,25 +22,21 @@ public class MainWindow extends JFrame {
         this.setLocation(100, 80);
         content = this.getContentPane();
         content.add(testLabel);
-      // this.setMinimumSize(window_Dimension);        
+        // this.setMinimumSize(window_Dimension);        
     }
 
-    public void addContent(JPanel pane){
-    content.removeAll();
-    content.add(pane);
-    this.pack();
-    this.setVisible(true);
+    public void addContent(JPanel pane) {
+
+        content.removeAll();
+        content.add(pane);
+        this.pack();
+        this.update(this.getGraphics());
+        this.setVisible(true);
     }
-    
-    public void closeWindow(){
-    this.setVisible(false);
-    this.dispose();
+
+    public void closeWindow() {
+        this.setVisible(false);
+        this.dispose();
     }
-    
-    
-    
-    
-    
-    
-    
+
 }

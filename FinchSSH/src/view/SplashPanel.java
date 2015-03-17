@@ -32,23 +32,17 @@ public class SplashPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 255, 0));
 
         label_Image.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
-        label_Image.setText("Finch Remote Connect");
+        label_Image.setIcon(new javax.swing.ImageIcon("C:\\Users\\CJ\\Pictures\\splash_450x250.fw.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(label_Image)
-                .addContainerGap(81, Short.MAX_VALUE))
+            .addComponent(label_Image)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(label_Image)
-                .addContainerGap(170, Short.MAX_VALUE))
+            .addComponent(label_Image)
         );
     }// </editor-fold>//GEN-END:initComponents
 
