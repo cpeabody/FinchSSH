@@ -64,7 +64,8 @@ public class RunPanel extends javax.swing.JPanel {
             }
         });
 
-        btn_Run.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_Run.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btn_Run.setForeground(new java.awt.Color(0, 153, 0));
         btn_Run.setText("Run");
         btn_Run.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +125,7 @@ public class RunPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Back)
                     .addComponent(btn_Exit))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

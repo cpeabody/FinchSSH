@@ -17,7 +17,7 @@ public class MainWindow extends JFrame {
 
     public MainWindow(int width, int height) throws HeadlessException {
         window_Dimension = new Dimension(width, height);
-        this.setTitle("Wireless Finch");
+        this.setTitle("RRC - Remote Robot Connection");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocation(100, 80);
         content = this.getContentPane();

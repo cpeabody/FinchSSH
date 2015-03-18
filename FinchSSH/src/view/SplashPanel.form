@@ -37,7 +37,7 @@
           <Font name="Rockwell Extra Bold" size="24" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\CJ\Pictures\splash_450x250.fw.png"/>
+          <Image iconType="3" name="/view/splash_450x250.png"/>
         </Property>
       </Properties>
     </Component>

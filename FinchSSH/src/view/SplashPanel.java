@@ -32,7 +32,7 @@ public class SplashPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 255, 0));
 
         label_Image.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
-        label_Image.setIcon(new javax.swing.ImageIcon("C:\\Users\\CJ\\Pictures\\splash_450x250.fw.png")); // NOI18N
+        label_Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/splash_450x250.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
